@@ -26,8 +26,11 @@ class XMLElement(object):
             for value in values[0]:
                 if isinstance(value, dict):
                     args_kwargs = list(value.values())[0]
-                    elem = python_to_xml(list(value.keys())[0], args_kwargs, args_kwargs[
-                        1] if len(args_kwargs) > 1 else {})
+                    try:
+                        elem = python_to_xml(list(value.keys())[0], args_kwargs, args_kwargs[
+                            1] if len(args_kwargs) > 1 else {})
+                    except:
+                        elem = None
                     args.append(elem)
                 else:
                     args.append(value)
