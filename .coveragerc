@@ -1,0 +1,6 @@
+[run]
+source = 
+    element_maker
+
+[report]
+omit = */tests/*
