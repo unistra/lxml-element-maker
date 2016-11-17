@@ -1,3 +1,19 @@
-<xml>
-
-</xml>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="fr:gouv:culture:archivesdefrance:seda:v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ArchiveTransferRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Comment">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="foo"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:dateTime" name="Date"/>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="cars"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
