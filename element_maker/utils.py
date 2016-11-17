@@ -4,7 +4,6 @@ from lxml import objectify
 import re
 from lxml import etree as E
 
-
 class XMLElement(object):
     """
     Base class from XML Elements
@@ -27,12 +26,8 @@ class XMLElement(object):
             for value in values[0]:
                 if isinstance(value, dict):
                     args_kwargs = list(value.values())[0]
-                    elem = None
-                    try:
-                        elem = python_to_xml(list(value.keys())[0], args_kwargs, args_kwargs[
-                            1] if len(args_kwargs) > 1 else {})
-                    except Exception as parsing_error:
-                        error = parsing_error
+                    elem = python_to_xml(list(value.keys())[0], args_kwargs, args_kwargs[
+                        1] if len(args_kwargs) > 1 else {})
                     args.append(elem)
                 else:
                     args.append(value)

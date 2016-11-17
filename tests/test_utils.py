@@ -39,9 +39,25 @@ class UtilsTest(TestCase):
         self.assertTrue(result)
 
     def test_pass_rng_wrong(self):
-        xml_element = XMLElement(namespace=self.namespace, **self.structure)
+        wrong_structure = {'ArchiveTransferRequest':
+                          [
+                              [
+                                  {'Comment': [
+                                      ['baz'], {"wrong": "bar"}
+                                  ]
+                                  },
+                                  {'Date': [
+                                      ["2014-05-12T00:00:00Z"]
+                                  ]
+                                  }
+                              ],
+                              {"cars": "pizza"}
+                          ]
+                          }
+        xml_element = XMLElement(namespace=self.namespace, **wrong_structure)
         result = xml_element.pass_rng(self.rng_test_file)
-        self.assertTrue(result)
+        self.assertFalse(result)
+        self.assertEqual(str(xml_element.error_log), "<string>:0:0:ERROR:RELAXNGV:RELAXNG_ERR_ATTRVALID: Element Comment failed to validate attributes")
 
     def test_pass_xsd_ok(self):
         xml_element = XMLElement(namespace=self.namespace, **self.structure)
@@ -49,9 +65,25 @@ class UtilsTest(TestCase):
         self.assertTrue(result)
 
     def test_pass_xsd_wrong(self):
-        xml_element = XMLElement(namespace=self.namespace, **self.structure)
+        wrong_structure = {'ArchiveTransferRequest':
+                          [
+                              [
+                                  {'Comment': [
+                                      ['baz'], {"wrong": "bar"}
+                                  ]
+                                  },
+                                  {'Date': [
+                                      ["2014-05-12T00:00:00Z"]
+                                  ]
+                                  }
+                              ],
+                              {"cars": "pizza"}
+                          ]
+                          }
+        xml_element = XMLElement(namespace=self.namespace, **wrong_structure)
         result = xml_element.pass_xsd(self.xsd_test_file)
-        self.assertTrue(result)
+        self.assertFalse(result)
+        self.assertEqual(str(xml_element.error_log), "<string>:0:0:ERROR:SCHEMASV:SCHEMAV_CVC_COMPLEX_TYPE_3_2_1: Element '{fr:gouv:culture:archivesdefrance:seda:v1.0}Comment', attribute 'wrong': The attribute 'wrong' is not allowed.")
 
 if __name__ == '__main__':
     main()
