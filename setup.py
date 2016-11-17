@@ -22,7 +22,7 @@ setup(
     maintainer_email='di-dip@unistra.fr',
     url='https://github.com/unistra/lxml-element-maker',
     license='PSF',
-    description='Transform a python structure to an xml element with lxml',
+    description='Transforms a python structure to an xml element with lxml',
     long_description=long_description,
     packages=find_packages(),
     download_url='http://pypi.python.org/pypi/lxml-element-maker',

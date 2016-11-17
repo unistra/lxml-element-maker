@@ -11,7 +11,7 @@ class UtilsTest(TestCase):
                           [
                               [
                                   {'Comment': [
-                                      ['bla'], {"bli": "blo"}
+                                      ['baz'], {"foo": "bar"}
                                   ]
                                   },
                                   {'Date': [
@@ -19,7 +19,7 @@ class UtilsTest(TestCase):
                                   ]
                                   }
                               ],
-                              {"stuff": "me"}
+                              {"cars": "pizza"}
                           ]
                           }
         self.namespace = "fr:gouv:culture:archivesdefrance:seda:v1.0"
@@ -27,9 +27,9 @@ class UtilsTest(TestCase):
     def test_xmlify(self):
         xml_element = XMLElement(namespace=self.namespace, **self.structure)()
         self.assertEqual(E.tostring(xml_element),
-            '<ArchiveTransferRequest xmlns="fr:gouv:culture:archivesdefrance:seda:v1.0" stuff="me"><Comment bli="blo">bla</Comment><Date>2014-05-12T00:00:00Z</Date></ArchiveTransferRequest>'.encode('utf-8'))
-        self.assertEqual(xml_element.attrib, {'stuff': "me"})
-        self.assertEqual(xml_element.Comment.attrib, {'bli': "blo"})
+            '<ArchiveTransferRequest xmlns="fr:gouv:culture:archivesdefrance:seda:v1.0" cars="pizza"><Comment foo="bar">baz</Comment><Date>2014-05-12T00:00:00Z</Date></ArchiveTransferRequest>'.encode('utf-8'))
+        self.assertEqual(xml_element.attrib, {'cars': "pizza"})
+        self.assertEqual(xml_element.Comment.attrib, {'foo': "bar"})
 
 
 
