@@ -2,6 +2,7 @@
 """Stuff concerning xml"""
 from lxml import objectify
 import re
+from lxml import etree as E
 
 
 class XMLElement(object):
@@ -40,6 +41,27 @@ class XMLElement(object):
             return makeElement(cleaned_tag_name, *args, **kwargs)
 
         return python_to_xml(element, *args, **kwargs)
+
+    def pass_rng(self, rng):
+        """
+        matches the xml against an rng
+        """
+        relax_doc = E.parse(rng)
+        relaxng = E.RelaxNG(relax_doc)
+        return relaxng.validate(self()) or self.make_error_log(relaxng)
+
+    def pass_xsd(self, xsd):
+        """
+        matches the xml against an xsd
+        """
+        xsd = E.parse(xsd)
+        schema = E.XMLSchema(xsd)
+        return schema.validate(self()) or self.make_error_log(schema)
+
+    def make_error_log(self, schema):
+        """makes an error log, and returns False"""
+        self.error_log = schema.error_log
+        return False
 
     def __init__(self, namespace="fr:gouv:culture:archivesdefrance:seda:v1.0", **kwargs):
         self.namespace = namespace

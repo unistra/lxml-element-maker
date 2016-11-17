@@ -23,6 +23,8 @@ class UtilsTest(TestCase):
                           ]
                           }
         self.namespace = "fr:gouv:culture:archivesdefrance:seda:v1.0"
+        self.rng_test_file = "./tests/data/test.rng"
+        self.xsd_test_file = "./tests/data/test.xsd"
 
     def test_xmlify(self):
         xml_element = XMLElement(namespace=self.namespace, **self.structure)()
@@ -31,7 +33,25 @@ class UtilsTest(TestCase):
         self.assertEqual(xml_element.attrib, {'cars': "pizza"})
         self.assertEqual(xml_element.Comment.attrib, {'foo': "bar"})
 
+    def test_pass_rng_ok(self):
+        xml_element = XMLElement(namespace=self.namespace, **self.structure)
+        result = xml_element.pass_rng(self.rng_test_file)
+        self.assertTrue(result)
 
+    def test_pass_rng_wrong(self):
+        xml_element = XMLElement(namespace=self.namespace, **self.structure)
+        result = xml_element.pass_rng(self.rng_test_file)
+        self.assertTrue(result)
+
+    def test_pass_xsd_ok(self):
+        xml_element = XMLElement(namespace=self.namespace, **self.structure)
+        result = xml_element.pass_xsd(self.xsd_test_file)
+        self.assertTrue(result)
+
+    def test_pass_xsd_wrong(self):
+        xml_element = XMLElement(namespace=self.namespace, **self.structure)
+        result = xml_element.pass_xsd(self.xsd_test_file)
+        self.assertTrue(result)
 
 if __name__ == '__main__':
     main()
