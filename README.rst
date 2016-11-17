@@ -40,6 +40,10 @@ Transforms a python structure to an xml element with lxml :
                           }
     namespace = "fr:gouv:culture:archivesdefrance:seda:v1.0"
     xml_element = XMLElement(namespace=self.namespace, **self.structure)()
+    # Test the element with an xsd schema
+    result = xml_element.pass_xsd("./tests/data/test.xsd")
+    # Or test the element with an rng schema
+    result2 = xml_element.pass_rng("./tests/data/test.rng")
 
 The result is an xml :
 
