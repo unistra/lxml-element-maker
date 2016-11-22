@@ -1,6 +1,30 @@
 lxml-element-maker
 ==================
 
+.. image:: https://api.travis-ci.org/unistra/lxml-element-maker.svg?branch=master
+    :target: https://travis-ci.org/unistra/lxml-element-maker
+    :alt: Build
+
+.. image:: http://coveralls.io/repos/unistra/lxml-element-maker/badge.png?branch=master
+    :target: http://coveralls.io/r/unistra/lxml-element-maker?branch=master
+    :alt: Coverage
+
+.. image:: https://img.shields.io/pypi/v/lxml-element-maker.svg
+    :target: https://pypi.python.org/pypi/lxml-element-maker
+    :alt: Version
+
+.. image:: https://img.shields.io/pypi/pyversions/lxml-element-maker.svg
+    :target: https://pypi.python.org/pypi/lxml-element-maker
+    :alt: Python Version
+
+.. image:: https://img.shields.io/pypi/status/lxml-element-maker.svg
+    :target: https://pypi.python.org/pypi/lxml-element-maker
+    :alt: Python Version
+
+.. image:: https://img.shields.io/pypi/l/lxml-element-maker.svg
+    :target: https://docs.python.org/3/license.html
+    :alt: Licence
+
 Requirements
 ------------
 
